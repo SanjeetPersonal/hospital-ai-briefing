@@ -1,0 +1,39 @@
+name: Daily hospital AI briefing
+
+on:
+  schedule:
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-archive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update briefing archive
+        env:
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        run: node scripts/updateBriefingArchive.js
+
+      - name: Commit archive changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update daily hospital AI briefing
+          file_pattern: public/data/*.json server/data/*.json
+
+      - name: Trigger Vercel deploy hook
+        if: ${{ secrets.VERCEL_DEPLOY_HOOK_URL != '' }}
+        env:
+          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: curl -fsS -X POST "$VERCEL_DEPLOY_HOOK_URL"
