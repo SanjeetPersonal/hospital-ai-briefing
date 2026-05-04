@@ -33,7 +33,9 @@ jobs:
           file_pattern: public/data/*.json server/data/*.json
 
       - name: Trigger Vercel deploy hook
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK_URL != '' }}
         env:
           VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
-        run: curl -fsS -X POST "$VERCEL_DEPLOY_HOOK_URL"
+        run: |
+          if [ -n "$VERCEL_DEPLOY_HOOK_URL" ]; then
+            curl -fsS -X POST "$VERCEL_DEPLOY_HOOK_URL"
+          fi
