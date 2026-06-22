@@ -152,5 +152,27 @@
       "Check whether repeated blockers are moving from integration risk into measurable deployment progress.",
       "Look for proof that the strongest topic signals are changing daily operations, not just creating pilot activity."
     ]
+  },
+  {
+    "week": "2026-W26",
+    "overview": "This weekly summary rolls up patterns, repeated themes, and adoption blockers from the last seven days instead of repeating each daily entry.",
+    "patterns": [
+      "The last seven days show a low-change pattern, which is useful context rather than missing data.",
+      "The most visible topic areas were documentation, patient flow, revenue cycle, bed management.",
+      "trust was the most repeated adoption blocker in the challenge log."
+    ],
+    "themes": [
+      "documentation",
+      "patient flow",
+      "revenue cycle",
+      "bed management",
+      "policy",
+      "clinical decision support"
+    ],
+    "importantChanges": [],
+    "watchlist": [
+      "Check whether repeated blockers are moving from integration risk into measurable deployment progress.",
+      "Look for proof that the strongest topic signals are changing daily operations, not just creating pilot activity."
+    ]
   }
 ]
